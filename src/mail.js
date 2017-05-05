@@ -10,7 +10,7 @@ io.sockets.on('connection', function (socket) {
         service: 'gmail',
         auth: {
             user: 'jerem71100@gmail.com',
-            pass: 'pomme19951208'
+            pass: ''
         }
     });
 

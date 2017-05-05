@@ -2,7 +2,13 @@ var express    = require('express');        // call express
 var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');
 var nodemailer = require('nodemailer');
-
+var mysql      = require('mysql');
+var connection = mysql.createConnection({
+  host     : '',
+  user     : '',
+  password : '',
+  database : ''
+});
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -24,11 +30,24 @@ router.get('/', function(req, res) {
 	res.json({ message: 'hooray! welcome to our api!' });   
 });
 
+
 // more routes for our API will happen here
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/api', router);
+
+
+app.get('/articles',function (req,res) {
+	connection.connect();
+
+	connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
+		if (error) throw error;
+		console.log('The solution is: ', results[0].solution);
+	});
+
+	connection.end();
+})
 
 
 app.post('/sendMail', function(req, res, next) {
