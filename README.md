@@ -34,6 +34,10 @@ Edit server.js and set your mail and MySql informations
 		}
 	});
 ```
+
+If you are using GMAIL, you have to activate this option.
+https://myaccount.google.com/lesssecureapps
+
 Start the server.
 ```sh
 $ node server.js
