@@ -1,2 +1,1 @@
-hello world !
-get some nodejs stuff
+Webpack project

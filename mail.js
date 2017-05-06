@@ -4,10 +4,10 @@ var bodyParser = require('body-parser');
 var nodemailer = require('nodemailer');
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
-  host     : '',
-  user     : '',
-  password : '',
-  database : ''
+  host     : 'localhost',
+  user     : 'root',
+  password : 'root',
+  database : 'blog'
 });
 
 // configure app to use bodyParser()
@@ -27,14 +27,12 @@ var router = express.Router();              // get an instance of the express Ro
 
 
 app.get('/articles',function (req,res) {
-	connection.connect();
 
-	connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
+	connection.query('SELECT * FROM articles', function (error, results, fields) {
 		if (error) throw error;
-		console.log('The solution is: ', results[0].solution);
+		console.log(results);
+		res.json(results);
 	});
-
-	connection.end();
 })
 
 
@@ -44,8 +42,8 @@ app.post('/sendMail', function(req, res, next) {
 	var transporter = nodemailer.createTransport({
 		service: 'gmail',
 		auth: {
-			user: 'jerem71100@gmail.com',
-			pass: ''
+			user: 'YourGmailAddress',
+			pass: 'yourPassword'
 		}
 	});
 	transporter.sendMail(mailOptions, (error, info) => {

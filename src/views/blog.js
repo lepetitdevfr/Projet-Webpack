@@ -2,6 +2,25 @@ import React, {Component} from 'react';
 import Header from '../views/header.js';
 import Footer from '../views/footer.js';
 
+
+const req = new XMLHttpRequest();
+var articles = null;
+
+req.onreadystatechange = function(event) {
+  if (this.readyState === XMLHttpRequest.DONE) {
+    if (this.status === 200) {
+      var res = JSON.parse(this.responseText);
+      console.log(res);
+      articles = res;
+    } else {
+      console.log("Status de la réponse: %d (%s)", this.status, this.statusText);
+    }
+  }
+};
+
+req.open('GET', 'http://localhost:8080/articles', true);
+req.send(null);
+
 export default class Blog extends Component {
   render() {
     return (
@@ -15,3 +34,7 @@ export default class Blog extends Component {
     );
   }
 };
+
+class Article extends Component{
+
+}
