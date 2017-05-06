@@ -15,7 +15,7 @@ $ cd Projet-webpack
 $ npm install
 ```
 
-Edit mail.js and set your mail and MySql informations
+Edit server.js and set your mail and MySql informations
 ```js
 	// MySql informations
 	var connection = mysql.createConnection({
@@ -36,7 +36,7 @@ Edit mail.js and set your mail and MySql informations
 ```
 Start the server.
 ```sh
-$ node mail.js
+$ node server.js
 ```
 
 Build the application.
