@@ -21,6 +21,17 @@ req.onreadystatechange = function(event) {
 req.open('GET', 'http://localhost:8080/articles', true);
 req.send(null);
 
+function getArticles(props) {
+  const listItems = props.map((article) =>
+    <li>
+      <h1>{article.title}</h1><p>{article.content}</p>
+    </li>
+  );
+  return (
+    <ul>{listItems}</ul>
+  );
+}
+
 export default class Blog extends Component {
   render() {
     return (
@@ -28,6 +39,7 @@ export default class Blog extends Component {
         <Header/>
         <div id="grid_page" class="grid-page">
           <h1 class="title">Blog</h1>
+          {getArticles(articles)}
         </div>
         <Footer/>
       </div>
@@ -35,6 +47,3 @@ export default class Blog extends Component {
   }
 };
 
-class Article extends Component{
-
-}
