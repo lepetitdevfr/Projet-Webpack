@@ -30,7 +30,8 @@ function displayArticles(articles) {
   var html = "";
   for (var i = 0; i < articles.length; i++) {
     console.log(articles[i]);
-    html += "<div><h1>"+articles[i].title+"</h1><cite>"+articles[i].date+"</cite><p>"+articles[i].authors+"</p><p>"+articles[i].content+"</p></div>"
+    var myDate = new Date(articles[i].date)
+    html += "<div class='article'><h1>"+articles[i].title+"</h1><cite>"+myDate.toLocaleDateString()+"</cite><p>"+articles[i].authors+"</p><p>"+articles[i].content+"</p></div>"
   }
   document.getElementById("articleList").innerHTML = html;
 }
@@ -43,7 +44,7 @@ export default class Blog extends Component {
         <div id="grid_page" class="grid-page">
           <h1 class="title">Blog</h1>
           <Link to="/addArticle">
-          <p>Add</p>
+          <button>Add +</button>
           </Link>
           {getArticles()}
           <div id="articleList"></div>

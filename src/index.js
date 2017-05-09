@@ -10,6 +10,7 @@ import addArticle from './views/addArticle.js';
 import Dashboard from './views/dashboard.js';
 
 import "./styles/base.scss";
+import "./styles/custom.scss";
 import "./js/ui.js";
 
 
