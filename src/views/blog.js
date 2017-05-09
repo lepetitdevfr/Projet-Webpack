@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 import Header from '../views/header.js';
 import Footer from '../views/footer.js';
+import {Link} from 'react-router-dom';
 
 
-const req = new XMLHttpRequest();
-var articles = null;
+
+function getArticles(){
+  const req = new XMLHttpRequest();
+  var articles = null;
 
 req.onreadystatechange = function(event) {
   if (this.readyState === XMLHttpRequest.DONE) {
@@ -12,6 +15,7 @@ req.onreadystatechange = function(event) {
       var res = JSON.parse(this.responseText);
       console.log(res);
       articles = res;
+      displayArticles(articles);
     } else {
       console.log("Status de la réponse: %d (%s)", this.status, this.statusText);
     }
@@ -20,16 +24,15 @@ req.onreadystatechange = function(event) {
 
 req.open('GET', 'http://localhost:8080/articles', true);
 req.send(null);
+}
 
-function getArticles(props) {
-  const listItems = props.map((article) =>
-    <li>
-      <h1>{article.title}</h1><p>{article.content}</p>
-    </li>
-  );
-  return (
-    <ul>{listItems}</ul>
-  );
+function displayArticles(articles) {
+  var html = "";
+  for (var i = 0; i < articles.length; i++) {
+    console.log(articles[i]);
+    html += "<div><h1>"+articles[i].title+"</h1><cite>"+articles[i].date+"</cite><p>"+articles[i].authors+"</p><p>"+articles[i].content+"</p></div>"
+  }
+  document.getElementById("articleList").innerHTML = html;
 }
 
 export default class Blog extends Component {
@@ -39,7 +42,11 @@ export default class Blog extends Component {
         <Header/>
         <div id="grid_page" class="grid-page">
           <h1 class="title">Blog</h1>
-          {getArticles(articles)}
+          <Link to="/addArticle">
+          <p>Add</p>
+          </Link>
+          {getArticles()}
+          <div id="articleList"></div>
         </div>
         <Footer/>
       </div>

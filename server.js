@@ -35,6 +35,16 @@ app.get('/articles',function (req,res) {
 	});
 })
 
+app.post('/articles', function(req, res, next) {
+	var params = req.body;
+	console.log(params);
+
+	connection.query('INSERT INTO `articles`(`title`, `authors`, `date`, `content`) VALUES ("'+params.title+'","'+params.authors+'","'+params.date+'","'+params.content+'")', function (error, results, fields) {
+		if (error) throw error;
+		console.log(results);
+		res.json(results);
+	});
+});
 
 app.post('/sendMail', function(req, res, next) {
 	var mailOptions = req.body;

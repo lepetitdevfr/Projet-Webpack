@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import MainNav from '../components/main-nav.js';
 import {Link} from 'react-router-dom';
 
+console.log(Link)
 export default class pageHeader extends Component {
   render() {
     return (

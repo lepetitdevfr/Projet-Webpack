@@ -6,6 +6,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Home from './views/home.js';
 import Blog from './views/blog.js';
 import Contact from './views/contact.js';
+import addArticle from './views/addArticle.js';
 import Dashboard from './views/dashboard.js';
 
 import "./styles/base.scss";
@@ -18,6 +19,7 @@ ReactDOM.render(
         <Route exact={true} path="/" component={Home} />
         <Route path="/blog" component={Blog} />
         <Route path="/contact" component={Contact} />
+        <Route path="/addArticle" component={addArticle} />
         <Route path="/dashboard" component={Dashboard} />
     </Switch>
   </Router>,
